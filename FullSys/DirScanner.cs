@@ -56,6 +56,7 @@ namespace FullSys
             {
                 this.items = new List<DirLocation>();
                 this.Items = new ReadOnlyCollection<DirLocation> (items);
+                Depth = -1;
             }
 
             public ItemStack (DirectoryInfo rootInfo) : this()
@@ -107,7 +108,7 @@ namespace FullSys
                 else if (items.Count > 1)
                     items.RemoveAt (1);
                 items[0].Index = -1;
-                Depth = 0;
+                Depth = -1;
             }
 
 
@@ -134,7 +135,10 @@ namespace FullSys
                     { Depth = items.Count-1; return true; }
                     items.RemoveAt (items.Count-1);
                     if (items.Count == 0)
+                    {
+                        Depth = -1;
                         return false;
+                    }
                     top = items[items.Count-1];
                 };
             }
