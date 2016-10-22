@@ -8,7 +8,7 @@ using System.Text;
 namespace FullSys
 {
     [DebuggerDisplay(@"\{{Path}}")]
-    public class DirTreeLocation : DirLocation.ItemStack
+    public class DirTreeLocation : DirLocation.Nodes
     {
         public DirTreeLocation (string rootPath, int tabSize = 4) : base (rootPath)
         { this.IndentSize = tabSize; }

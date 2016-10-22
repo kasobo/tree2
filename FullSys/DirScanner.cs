@@ -40,7 +40,7 @@ namespace FullSys
         public bool IsLast { get { return Index >= DirCount-1; } }
 
 
-        public class ItemStack
+        public class Nodes
         {
             protected readonly IList<DirLocation> items;
             public ReadOnlyCollection<DirLocation> Items { get; private set; }
@@ -52,20 +52,20 @@ namespace FullSys
             public bool HasSubdirs { get { return Depth+1 < items.Count && items[Depth+1].dirInfos.Length > 0; } }
             public string TreeName { get { return items.Count == 1? RootPath : items[items.Count-1].Name; } }
 
-            private ItemStack()
+            private Nodes()
             {
                 this.items = new List<DirLocation>();
                 this.Items = new ReadOnlyCollection<DirLocation> (items);
                 Depth = -1;
             }
 
-            public ItemStack (DirectoryInfo rootInfo) : this()
+            public Nodes (DirectoryInfo rootInfo) : this()
             {
                 this.RootPath = rootInfo.FullName;
                 this.items.Add (new DirLocation (new DirectoryInfo[] { rootInfo }, -1));
             }
 
-            public ItemStack (string rootPath) : this()
+            public Nodes (string rootPath) : this()
             {
                 this.RootPath = rootPath;
                 DirectoryInfo di = new DirectoryInfo (rootPath);
@@ -146,20 +146,20 @@ namespace FullSys
     }
 
 
-    public class DirScanner : IEnumerable<DirLocation.ItemStack>
+    public class DirScanner : IEnumerable<DirLocation.Nodes>
     {
-        private DirLocation.ItemStack location;
+        private DirLocation.Nodes location;
 
         public DirScanner (string rootPath)
-        { this.location = new DirLocation.ItemStack (rootPath); }
+        { this.location = new DirLocation.Nodes (rootPath); }
 
         public DirScanner (DirectoryInfo dirInfo)
-        { this.location = new DirLocation.ItemStack (dirInfo); }
+        { this.location = new DirLocation.Nodes (dirInfo); }
 
         IEnumerator IEnumerable.GetEnumerator()
         { return GetEnumerator(); }
 
-        public IEnumerator<DirLocation.ItemStack> GetEnumerator()
+        public IEnumerator<DirLocation.Nodes> GetEnumerator()
         {
             while (location.Advance())
                 yield return location;
