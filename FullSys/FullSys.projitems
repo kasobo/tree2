@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>8eced070-0551-41e2-9fc2-d312f71c60d2</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>FullSys</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)DirScanner.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DirTreeScanner.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DirTreeScanner437.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)StringBuilderExtensions.cs" />
+  </ItemGroup>
+</Project>
