@@ -21,7 +21,12 @@ namespace AppMain
             for (int ix = 0; ix < args.Length; ++ix)
             {
                 var arg = args[ix].ToUpper();
-                if (arg == "/F")
+                if (arg == "/?")
+                {
+                    ShowUsage();
+                    return 0;
+                }
+                else if (arg == "/F")
                     showFiles = true;
                 else if (arg == "/A")
                     showing = OutputType.Ascii;
@@ -30,9 +35,9 @@ namespace AppMain
                 else if (arg == "/2")
                     tab = 2;
                 else if (arg.StartsWith ("/"))
-                { Console.WriteLine ("Invalid switch - " + arg); return 1; }
-                else if (ix != args.Length-1)
-                { Console.WriteLine ("Too many parameters - " + arg); return 2; }
+                { Console.WriteLine ("Invalid switch - " + args[ix]); return 1; }
+                else if (rootPath != null)
+                { Console.WriteLine ("Too many parameters - " + args[ix]); return 2; }
                 else
                     rootPath = arg;
             }
@@ -67,6 +72,21 @@ namespace AppMain
             }
 
             return 0;
+        }
+
+
+        static void ShowUsage()
+        {
+            string exe = System.Diagnostics.Process.GetCurrentProcess().ProcessName;
+
+            Console.WriteLine ("Graphically displays the folder structure of a drive or path.");
+            Console.WriteLine ();
+            Console.WriteLine (exe + " [drive:][path] [/F] [/A] [/W] [/2]");
+            Console.WriteLine ();
+            Console.WriteLine ("   /F   Display the names of the files in each folder.");
+            Console.WriteLine ("   /A   Use ASCII instead of extended characters.");
+            Console.WriteLine ("   /W   Produce output suitable for a static HTML web page.");
+            Console.WriteLine ("   /2   Indent by 2 instead of 4.");
         }
     }
 }
