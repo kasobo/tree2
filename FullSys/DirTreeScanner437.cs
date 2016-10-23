@@ -29,7 +29,7 @@ namespace FullSys
             Console.WriteLine ("</title>");
             Console.WriteLine ("<meta charset=\"UTF-8\">");
             Console.WriteLine ("<style>");
-            Console.WriteLine ("  button.bn { border-width:1px; padding:0px 2px; font-family:monospace; font-size:x-small; color: red; background-color:black; border-color:red; }");
+            Console.WriteLine ("  button.bn { border-width:1px; padding:0px 2px; font-family:monospace; font-size:xx-small; color: red; background-color:black; border-color:red; }");
             Console.WriteLine ("  div.s1 { display:block; }");
             Console.WriteLine ("  div.s2 { display:none; }");
             Console.WriteLine ("</style>");
@@ -66,7 +66,7 @@ namespace FullSys
             else if (! hasSubdirsOrFiles)
             {
                 Console.Write (GetIndent().ToString());
-                Console.Write ("<button class='bn'>&nbsp;</button>");
+                Console.Write ("<button class='bn'> </button>");
                 Console.WriteLine (new StringBuilder().AppendHtml (top.Name));
             }
             else
@@ -97,7 +97,7 @@ namespace FullSys
 
             if (Depth >= 1 && ! HasSubdirs)
             {
-                if (top.FileInfos.Length > 0)
+                if (top.FileInfos != null && top.FileInfos.Length > 0)
                     Console.Write ("</div>");
                 for (int dx = Depth; dx > 1 && items[dx].IsLast; --dx)
                     Console.Write ("</div>");
