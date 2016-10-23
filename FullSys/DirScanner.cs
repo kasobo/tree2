@@ -15,12 +15,20 @@ namespace FullSys
         public static extern int StrCmpLogicalW (string s1, string s2);
     }
 
-    public class NaturalCompare : IComparer<DirectoryInfo>
-    {
-        static public readonly IComparer<DirectoryInfo> Instance = new NaturalCompare();
 
+    public sealed class NaturalCompareStringWin32 : IComparer<string>
+    {
+        public int Compare (string s1, string s2)
+        { return Win32Imports.StrCmpLogicalW (s1, s2); }
+    }
+
+
+    public class NaturalCompareDirectoryInfo : IComparer<DirectoryInfo>
+    {
+        private IComparer<string> StringComparer = new NaturalCompareStringWin32();
+        public static readonly IComparer<DirectoryInfo> Comparer = new NaturalCompareDirectoryInfo();
         public int Compare (DirectoryInfo d1, DirectoryInfo d2)
-        { return Win32Imports.StrCmpLogicalW (d1.Name, d2.Name); }
+        { return StringComparer.Compare (d1.Name, d2.Name); }
     }
 
 
@@ -86,7 +94,7 @@ namespace FullSys
                 else
                 {
                     DirectoryInfo[] nextDirs = top.dirInfos[top.Index].GetDirectories();
-                    Array.Sort (nextDirs, NaturalCompare.Instance);
+                    Array.Sort (nextDirs, NaturalCompareDirectoryInfo.Comparer);
                     items.Add (new DirLocation (nextDirs, -1));
                     result = nextDirs.Length > 0;
                 }
@@ -123,6 +131,7 @@ namespace FullSys
                     DirectoryInfo[] subdirs = top.dirInfos[top.Index].GetDirectories();
                     if (subdirs.Length > 0)
                     {
+                        Array.Sort (subdirs, NaturalCompareDirectoryInfo.Comparer);
                         Depth = items.Count;
                         items.Add (new DirLocation (subdirs, 0));
                         return true;
