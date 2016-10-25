@@ -11,6 +11,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FullSys4", "FullSys4\FullSy
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{A20D0552-4D65-4F77-A026-6A997641CC15}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Doc", "Doc", "{5193A483-CD6A-4BCA-BD4F-549DD6194802}"
+	ProjectSection(SolutionItems) = preProject
+		Doc\tree2-sample1.png = Doc\tree2-sample1.png
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		FullSys\FullSys.projitems*{3f2054ff-edac-42d7-9854-37eac1fa71d4}*SharedItemsImports = 4
