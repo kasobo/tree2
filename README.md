@@ -3,12 +3,12 @@ Enhanced version of Windows tree.exe command.
 
 #### Syntax
 
-`tree2 [drive:][path] [/F] [/A] [/W] [/2]`
+**`tree2 [drive:][path] [/F] [/A] [/W] [/2]`**
 
-`/F    `Display the names of the files in each folder.<br/>
-`/A &nbsp;&nbsp;`Use ASCII instead of extended characters.  
-`/W   `&nbsp;&nbsp;Produce output suitable for a static HTML web page.  
-`/2   `Indent by 2 instead of 4.
+`/F` &nbsp;&nbsp;Display the names of the files in each folder.<br/>
+`/A` &nbsp;&nbsp;Use ASCII instead of extended characters.<br/>
+`/W` &nbsp;&nbsp;Produce output suitable for a static HTML web page.<br/>
+`/2` &nbsp;&nbsp;Indent by 2 instead of 4.<br/>
 
 The two switches that this version adds to the Windows utility are '/W' and '/2'.
 The '/W' switch produces a single web page that displays a tree view of the directory structure -
@@ -36,11 +36,12 @@ T:\T2
 |
 \---D10
     \---D2B
-            d2bfile.txt
-            
-T:\> tree2 /a /w /2 /f t:\t2 > t:\dirPage.html
-```
+            D2Bbfile.txt
+```            
+**`T:\> tree2 /a /w /2 /f t:\t2 > t:\dirPage.html`**
 
 The output of the `/W` switch produces a web page as seen below.
+Use the +/- button to show or hide contents of directories.
 
 ![sample1](Doc/tree2-sample1.png "Sample of /W output.")
+
